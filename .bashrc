@@ -116,3 +116,10 @@ alias 'em'='emacsclient -nw -create-frame --alternate-editor=""'
 . "$HOME/.cargo/env"
 
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+
+# General functions
+function mkcd(){
+    mkdir $1
+    cd $1
+}
