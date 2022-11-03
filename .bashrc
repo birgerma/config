@@ -115,4 +115,4 @@ alias 'emacs'='emacsclient -create-frame --alternate-editor=""'
 alias 'em'='emacsclient -nw -create-frame --alternate-editor=""'
 . "$HOME/.cargo/env"
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/.git/ --work-tree=$HOME'
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
