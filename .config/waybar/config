@@ -1,0 +1,273 @@
+// Vim:ft=json
+
+{
+  // General
+  "layer": "top",
+  "position": "top",
+  "height": 35,
+
+  // Modules
+  "modules-left": [
+    "sway/workspaces",
+    "custom/right-arrow-dark",
+      "custom/right-arrow-light",
+      //"sway/mode",
+      //"custom/scratchpad",
+      //"custom/right-arrow-dark",
+      //"custom/right-arrow-light",
+      "custom/weather",
+      "custom/right-arrow-dark",
+      "custom/right-arrow-light",
+      "sway/mode",
+      "custom/right-arrow-dark"
+//      "mpd"
+  ],
+  "modules-center": [
+    "custom/left-arrow-dark",
+    //"custom/left-arrow-light",
+    //"custom/left-arrow-dark",
+    "sway/window",
+    "custom/right-arrow-dark"
+    //"custom/right-arrow-light",
+    //"custom/right-arrow-dark"
+  ],
+  "modules-right": [
+    "custom/left-arrow-dark",
+    "pulseaudio",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "memory",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "cpu",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "battery",
+    "battery#bat1",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "custom/arch-updates",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "network",
+    "network#vpn",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "custom/display",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "clock#4",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "custom/pomodoro",
+    "tray",
+    "idle_inhibitor",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "custom/onoff"
+  ],
+
+  // Module Config
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"format": "{index}:{name}",
+                "current-only": true
+                
+	},
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
+  "clock#4": {
+    "format": "{:%a %d/%m %H:%M}",
+    "tooltip": false
+  },
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"bat": "BAT0",
+    "states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+  "battery#bat1": {
+    "bat": "BAT1",
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "tray": {
+          "icon-size": 25
+	},
+  "network": {
+    //"interface": "wlp4s0",
+    // "format-wifi": " {essid} ({signalStrength}%)",
+    "format": "{ifname}",
+    "format-wifi": " ",
+    "format-ethernet": "{ifname} ",
+    "format-disconnected": "❌", //An empty format will hide the module.
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": " {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    // "on-cloick": "terminator -e nmtui"
+    // "on-click": "~/.local/bin/rofi-wifi-menu/rofi-wifi-menu.sh"
+    "on-click": "~/.local/bin/rofi-wifi-menu.sh"
+  },
+  "network#vpn": {
+        "interface": "cscotun0",
+        "format-wifi": "🔒",
+        "format-ethernet": "🔒",
+        // "format-disconnected": "🔓",
+        "format-disconnected": "",
+        "on-click": "/opt/cisco/anyconnect/bin/vpnui"
+  },
+  "sway/window": {
+    "format": "{}",
+    "max-length": 40
+  },
+  "sway/mode": {
+    "format": " {}",
+    "max-length": 50
+  },
+  "custom/arch-updates": {
+    "format": " {}",
+    "interval": "once",
+    "exec": "yay -Qu | wc -l",
+    "signal": 8
+  },
+  "custom/weather": {
+    "interval": "1800",
+    "exec": "~/.local/bin/weather.sh $WEATHER_LOC"
+  },
+  "custom/scratchpad": {
+    "format": "Scratchpad: {}",
+    "escape": true,
+    "interval": 1,
+    "exec": "swaymsg -t get_tree | jq '.nodes[].nodes[] | select(.name==\"__i3_scratch\").floating_nodes | length'",
+    "exec-if": "swaymsg -t get_tree | jq '.nodes[].nodes[] | select(.name==\"__i3_scratch\").floating_nodes | length' | grep -v '^0$'"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+    }
+  },
+  "custom/onoff": {
+     "format": "",
+     "tooltip": true,
+     "on-click": "wlogout"
+  }
+  ,
+  "custom/display": {
+    "format": "",
+    "tooltip": true,
+    "on-click": "wdisplays"
+  },
+/*  "custom/pomodoro": {
+    "format": "🍅 {}",
+    "exec": "pypomcli time",
+    "interval":1,
+    "tooltip": true,
+    "on-click": "pypomcli start"
+  },*/
+  "mpd": {//https://github.com/Alexays/Waybar/wiki/Module:-MPD
+	"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+	"format-disconnected": "Disconnected ",
+	"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+	"interval": 2,
+	"consume-icons": {
+		"on": " " // Icon shows only when "consume" is on
+	},
+	"random-icons": {
+		"off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+		"on": " "
+	},
+	"repeat-icons": {
+		"on": " "
+	},
+	"single-icons": {
+		"on": "1 "
+	},
+	"state-icons": {
+		"paused": "",
+		"playing": ""
+	},
+	"tooltip-format": "MPD (connected)",
+	"tooltip-format-disconnected": "MPD (disconnected)"
+}
+ 
+  //,
+  //"custom/bluetooth": {
+  //    "format": "",
+  //    "tooltip": true,
+  //    "on-click": "blueman-manager"
+  //}
+}
