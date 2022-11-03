@@ -1,0 +1,16 @@
+
+map n navigate previous
+map e scroll down
+map i scroll up
+map o navigate next
+
+map <Left> navigate previous
+map <Right> navigate next
+
+map <C-=> zoom in
+map <C--> zoom out
+map <C-Return> zoom width
+
+map <C-r> reload
+
+set selection-clipboard clipboard
