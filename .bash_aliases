@@ -11,3 +11,6 @@ alias 'em'='emacsclient -nw -create-frame --alternate-editor=""'
 
 # Open files with default program
 alias 'open'='gio open'
+
+# Get confirmation on rm
+alias rm='rm -i'
