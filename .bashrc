@@ -113,7 +113,11 @@ if ! shopt -oq posix; then
 fi
 alias 'emacs'='emacsclient -create-frame --alternate-editor=""'
 alias 'em'='emacsclient -nw -create-frame --alternate-editor=""'
-. "$HOME/.cargo/env"
+
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
+
 
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
